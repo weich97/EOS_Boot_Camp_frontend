@@ -6,9 +6,13 @@ import Dashboard from './dashboard';
 import SocialApps from './socialApps';
 import Carpool from './carpool';
 import AboutTest from './AboutUs/AboutTest';
+import Ticketbidding from './ticketbidding';
+import {Redirect} from 'react-router';
+import TicketTrade from './ticketTrade';
 
 const Routes = ({match}) =>
   <Switch>
+    <Redirect exact from = {`${match.url}`} to={`${match.url}/dashboard`}></Redirect>
     <Route path={`${match.url}/dashboard`} component = {Dashboard} />
     <Route path={`${match.url}/sample-page`}
            component={asyncComponent(() => import('./SamplePage'))}/>
@@ -16,6 +20,8 @@ const Routes = ({match}) =>
     <Route path={`${match.url}/test`} component = {AboutTest} />
     <Route path = {`${match.url}/social-apps`} component = {SocialApps} />
     <Route path = {`${match.url}/carpool`} component ={Carpool} />
+    <Route path = {`${match.url}/ticket-Bidding`} component ={Ticketbidding} />
+    <Route path = {`${match.url}/ticket-trading`} component ={TicketTrade} />
     {/*<Route component={asyncComponent(() => import("app/routes/extraPages/routes/404"))}/>*/}
   </Switch>;
 

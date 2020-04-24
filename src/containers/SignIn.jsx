@@ -10,11 +10,13 @@ import IntlMessages from 'util/IntlMessages';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import {ApiService} from '../services';
 import {UserAction} from '../actions';
+import { withRouter } from "react-router-dom";
 import {
   hideMessage,
   showAuthLoader,
   userSignIn,
 } from 'actions/Auth';
+import { store } from 'MainApp';
 
 class SignIn extends React.Component {
 
@@ -74,8 +76,9 @@ handleSubmit(event) {
   {console.log(form)}
   return ApiService.login(form)
     .then(() => {
-      setUser({ name: form.username });
-      //this.props.history.push('/');
+      setUser({ name: form.username, auth: 1, authUser: 1 });
+      //store.set("authUser", true);
+      this.props.history.push('/app/dashboard');
     })
     .catch(err => {
       this.setState({ error: err.toString() });

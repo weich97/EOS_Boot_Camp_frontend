@@ -12,6 +12,9 @@ import {ApiService} from '../../../../../services';
 const TrySearch = (props) =>{
 
     const [tabIndex,setTabIndex] = useState(1);
+    const onNavHome = () => {
+        //alert("clicked");
+    }
     return (
         <div className = "dashboard animated slideInUpTiny animation-duration-3">
             
@@ -55,7 +58,7 @@ const TrySearch = (props) =>{
                         <TabPane tabId = {1}>
                             {props.data.map((data, index) =>
                             
-                            <TabListDetails key={index} data = {data} />
+                            <TabListDetails key={index} data = {data} onClick = {onNavHome()} />
 
                             )}
                         </TabPane>
@@ -102,9 +105,6 @@ class SearchTrip extends Component{
     componentWillUnmount(){
         this._isMounted = false;
     }
-
-
-
 
     render(){
         const {user: name } = this.props;

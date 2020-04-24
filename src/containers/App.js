@@ -42,11 +42,11 @@ import RTL from "util/RTL";
 import {setDarkTheme, setThemeColor} from "../actions/Setting";
 import AppLayout from "./AppLayout";
 
-const RestrictedRoute = ({component: Component, authUser, ...rest}) =>
+const RestrictedRoute = ({component: Component, username, ...rest}) =>
   <Route
     {...rest}
     render={props =>
-      authUser
+      username
         ? <Component {...props} />
         : <Redirect
           to={{
@@ -158,7 +158,7 @@ const App = (props) => {
     applyTheme = getColorTheme(themeColor, applyTheme);
   }
   if (location.pathname === '/') {
-    if (authUser === null) {
+    if (localStorage.getItem("cardgame_account") == null) {
       return (<Redirect to={'/signin'}/>);
     } else if (initURL === '' || initURL === '/' || initURL === '/signin') {
       return (<Redirect to={'/app/dashboard/listing'}/>);
@@ -175,6 +175,7 @@ const App = (props) => {
   }
 
   const currentAppLocale = AppLocale[locale.locale];
+  const user = localStorage.getItem("cardgame_account");
   return (
     <ThemeProvider theme={applyTheme}>
       <MuiPickersUtilsProvider utils={MomentUtils}>
@@ -184,7 +185,7 @@ const App = (props) => {
           <RTL>
             <div className="app-main">
               <Switch>
-                <RestrictedRoute path={`${match.url}app`} authUser={authUser}
+                <RestrictedRoute path={`${match.url}app`} username = {user}
                                  component={AppLayout}/>
                 <Route path='/signin' component={SignIn}/>
                 <Route path='/signup' component={SignUp}/>

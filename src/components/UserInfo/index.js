@@ -27,11 +27,11 @@ const Tryme = (props) => {
     <div className="user-profile d-flex flex-row align-items-center">
       <Avatar
         alt='...'
-        src={"https://via.placeholder.com/150x150"}
+        src={"https://picsum.photos/200"}
         className="user-avatar "
       />
       <div className="user-detail">
-        <h4 className="user-name" onClick={handleClick}>{ props.kkk }<i
+        <h4 className="user-name" onClick={handleClick}>{ localStorage.getItem("cardgame_account") }<i
           className="zmdi zmdi-caret-down zmdi-hc-fw align-middle"/>
         </h4>
       </div>
@@ -58,6 +58,7 @@ const Tryme = (props) => {
         </MenuItem>
         <MenuItem onClick={() => {
           handleRequestClose();
+          logoutnow();
           dispatch(userSignOut());
         }}>
           <i className="zmdi zmdi-sign-in zmdi-hc-fw mr-2"/>
@@ -88,6 +89,12 @@ class UserInfo extends Component{
 
 const mapStateToProps = state => state;
 
+const logoutnow = (props) => {
+  localStorage.clear();
+  props.history.push('/signin');
+}
+
 export default connect(mapStateToProps) (UserInfo);
+
 
 

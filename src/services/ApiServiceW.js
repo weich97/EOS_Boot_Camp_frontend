@@ -11,7 +11,7 @@ async function takeAction(action, dataValue) {
     try {
         const resultWithConfig = await api.transact({
             actions: [{
-                account: process.env.REACT_APP_EOS_CONTRACT_NAME,
+                account: "auction",
                 name: action,
                 authorization: [{
                     actor: localStorage.getItem("cardgame_account"),
@@ -66,6 +66,7 @@ class ApiService{
       }
 
       static posttrip({ post_title, loc_desc, loc_param, cost_jorn, car_space }) {
+        console.log(localStorage.getItem("cardgame_account"))
         return new Promise((resolve, reject) => {
           takeAction("addpost", { user_name: localStorage.getItem("cardgame_account"),post_title: post_title, loc_desc: loc_desc, loc_param:loc_param, car_size: car_space, cost_trip:cost_jorn})
             .then(() => {
@@ -79,47 +80,17 @@ class ApiService{
         });
     }
 
-      static edittrip({ post_title, loc_desc, loc_param, cost_jorn, car_space, carpoolid }) {
-        console.log(carpoolid)
-        return new Promise((resolve, reject) => {
-          takeAction("editpost", { username: localStorage.getItem("cardgame_account"),post_title: post_title, carpoolid:carpoolid, loc_desc: loc_desc, loc_param:loc_param, car_size: car_space, cost_trip:cost_jorn})
-            .then(() => {
-              resolve();
-              {console.log("Edited Post successful")}
-            })
-            .catch(err => {
-                {console.log(err)}
-              reject(err);
-            });
-        });
-    }
-
-    static hopride({ carpoolid,space_req }) {
-      console.log(carpoolid)
-      return new Promise((resolve, reject) => {
-        takeAction("hopride", { username: localStorage.getItem("cardgame_account"),carpoolid:carpoolid, space_req: space_req})
-          .then(() => {
-            resolve();
-            {console.log("Signup for Trip Successfully")}
-          })
-          .catch(err => {
-              {console.log(err)}
-            reject(err);
-          });
-      });
-    }
-
       static async getUserByName(username){
 
           try{
             const rpc = new JsonRpc(process.env.REACT_APP_EOS_HTTP_ENDPOINT);
             const result = await rpc.get_table_rows({
                 "json": true,
-                "code": process.env.REACT_APP_EOS_CONTRACT_NAME,
-                "scope": process.env.REACT_APP_EOS_CONTRACT_NAME,
+                "code": "eymvnjdllpto",
+                "scope": "eymvnjdllpto",
                 "table": "users",
                 "limit": 1,
-                "upper_bound": username,
+                "lower_bound": username,
             });
             return result.rows[0];
 
@@ -136,7 +107,7 @@ class ApiService{
               "json": true,
               "code": process.env.REACT_APP_EOS_CONTRACT_NAME,
               "scope": process.env.REACT_APP_EOS_CONTRACT_NAME,
-              "table": "carpool",
+              "table": "users",
           });
           return result.rows;
 
@@ -153,58 +124,35 @@ class ApiService{
               "json": true,
               "code": process.env.REACT_APP_EOS_CONTRACT_NAME,
               "scope": process.env.REACT_APP_EOS_CONTRACT_NAME,
-              "table": "carpool",
-              "upper_bound": localStorage.getItem("cardgame_account")
+              "table": "users",
+              "lower_bound": localStorage.getItem("cardgame_account")
           });
-          if(result.rows){
-            //console.log(result.rows)
-            return result.rows;
-          }
-          else{
-            return [];
-          }
+          return result.rows;
 
         } catch(err){
             console.error(err);
         }
     }
 
-    static async getTripDetails(tripid){
-      try{
-        const rpc = new JsonRpc(process.env.REACT_APP_EOS_HTTP_ENDPOINT);
-        const result = await rpc.get_table_rows({
-            "json": true,
-            "code": process.env.REACT_APP_EOS_CONTRACT_NAME,
-            "scope": process.env.REACT_APP_EOS_CONTRACT_NAME,
-            "table": "carpool",
-            "limit": 1,
-            "lower_bound": tripid.handle
-        });
-        if(result.rows){
-          //console.log(result.rows)
-          return result.rows;
-        }
-        else{
-          return [];
-        }
-
-      } catch(err){
-          console.error(err);
-      }
-  }
-
     static async getTicketRecord(){
         try{
             const rpc = new JsonRpc(process.env.REACT_APP_EOS_HTTP_ENDPOINT);
             const result = await rpc.get_table_rows({
                 "json": true,
-                "code": process.env.REACT_APP_EOS_CONTRACT_NAME,
-                "scope": process.env.REACT_APP_EOS_CONTRACT_NAME,
+                "code": "auction",
+                "scope": "auction",
                 "table": "people",
             });
-            return result.rows.sort(function(a,b){
+            console.log(result.rows)
+            if(result.rows){
+              return result.rows.sort(function(a,b){
                 return a.auxi_price - b.auxi_price;
-            });
+              });
+            }
+            else{
+              return []
+            }
+
         }
         catch(err){
             console.error(err);

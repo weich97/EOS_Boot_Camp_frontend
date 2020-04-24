@@ -25,7 +25,7 @@ class AboutUs extends Component{
     loadUser(){
         
         const { setUser, user:{ name }} = this.props;
-        return ApiService.getUserByName(name).then(user => {
+        return ApiService.getUserByName(localStorage.getItem("cardgame_account")).then(user => {
             setUser({
                 name: user.username,
                 win_count: user.win_count,

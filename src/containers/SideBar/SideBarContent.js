@@ -49,13 +49,13 @@ const SideBarContent = () => {
           name: 'sidebar.ticketbidding',
           type: 'item',
           icon: 'email',
-          link: '/app/social-apps/wall'
+          link: '/app/ticket-bidding'
         },
         {
           name: 'sidebar.tradeticket',
           type: 'item',
           icon: 'email',
-          link: '/app/social-apps/wall'
+          link: '/app/ticket-trading'
         },
         {
           name: 'sidebar.trackticket',
