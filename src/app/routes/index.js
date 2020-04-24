@@ -6,7 +6,7 @@ import Dashboard from './dashboard';
 import SocialApps from './socialApps';
 import Carpool from './carpool';
 import AboutTest from './AboutUs/AboutTest';
-import Ticketbidding from './ticketbidding';
+import ticketbidding from './ticketbidding';
 import {Redirect} from 'react-router';
 import TicketTrade from './ticketTrade';
 
@@ -20,8 +20,8 @@ const Routes = ({match}) =>
     <Route path={`${match.url}/test`} component = {AboutTest} />
     <Route path = {`${match.url}/social-apps`} component = {SocialApps} />
     <Route path = {`${match.url}/carpool`} component ={Carpool} />
-    <Route path = {`${match.url}/ticket-Bidding`} component ={Ticketbidding} />
-    <Route path = {`${match.url}/ticket-trading`} component ={TicketTrade} />
+    <Route path = {`${match.url}/ticket-Bidding`} component ={ticketbidding} />
+    <Route path = {`${match.url}/ticket-trading`} component ={icketTrade} />
     {/*<Route component={asyncComponent(() => import("app/routes/extraPages/routes/404"))}/>*/}
   </Switch>;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import asyncComponent from '../../../util/asyncComponent';
 import {Redirect, Route, Switch} from 'react-router-dom';
 
-const Ticketbidding = ({match}) => (
+const ticketbidding = ({match}) => (
     <div className ="app-wrapper">
         <Switch>
             <Redirect exact from = {`${match.url}`} to={`${match.url}/show-tickets`}></Redirect>
@@ -13,4 +13,4 @@ const Ticketbidding = ({match}) => (
     </div>
 )
 
-export default Ticketbidding;
+export default ticketbidding;
