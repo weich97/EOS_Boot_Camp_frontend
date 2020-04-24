@@ -65,31 +65,6 @@ const SideBarContent = () => {
         },
       ]
     },
-    {
-      name: 'sidebar.settings',
-      type: 'section',
-      children:[
-        {
-          name: 'sidebar.aboutus',
-          type: 'item',
-          link: '/app/about-us',
-          icon: 'view-dashboard'
-        },
-        {
-          name: 'sidebar.profile',
-          type: 'item',
-          icon: 'email',
-          link: '/app/social-apps/profile'
-        },
-        {
-          name: 'sidebar.wall',
-          type: 'item',
-          icon: 'email',
-          link: '/app/social-apps/wall'
-        }
-
-      ]
-    },
     
   ];
 
