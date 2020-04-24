@@ -1,0 +1,2 @@
+(this["webpackJsonpjumbo-hooks"]=this["webpackJsonpjumbo-hooks"]||[]).push([[13],{858:function(o,e,n){"use strict";n.r(e);var t=n(0),s=n.n(t);e.default=function(){return s.a.createElement("div",null,"Demo Wall")}}}]);
+//# sourceMappingURL=13.18cba5a5.chunk.js.map

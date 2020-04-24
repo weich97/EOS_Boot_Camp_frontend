@@ -1,0 +1,1 @@
+{"version":3,"sources":["app/routes/socialApps/routes/Profile/index.js"],"names":["Profile"],"mappings":"mHAAA,2BAQeA,UANC,WACZ,OACI","file":"static/js/12.5eaf1dd9.chunk.js","sourcesContent":["import React from \"react\";\r\n\r\nconst Profile = () => {\r\n    return (\r\n        <div>Demo Profile</div>\r\n    );\r\n}\r\n\r\nexport default Profile;\r\n"],"sourceRoot":""}
