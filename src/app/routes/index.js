@@ -21,7 +21,7 @@ const Routes = ({match}) =>
     <Route path = {`${match.url}/social-apps`} component = {SocialApps} />
     <Route path = {`${match.url}/carpool`} component ={Carpool} />
     <Route path = {`${match.url}/ticket-Bidding`} component ={ticketbidding} />
-    <Route path = {`${match.url}/ticket-trading`} component ={icketTrade} />
+    <Route path = {`${match.url}/ticket-trading`} component ={TicketTrade} />
     {/*<Route component={asyncComponent(() => import("app/routes/extraPages/routes/404"))}/>*/}
   </Switch>;
 

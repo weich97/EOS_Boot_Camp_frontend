@@ -1,4 +1,5 @@
 {
+  "homepage": "https://weich97.github.io/EOS_Boot_Camp_frontend",
   "name": "jumbo-hooks",
   "version": "0.1.0",
   "private": true,
@@ -91,6 +92,8 @@
     "url-search-params": "^1.1.0"
   },
   "scripts": {
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "react-scripts --max_old_space_size=6144 build",
     "test": "react-scripts test",
@@ -110,5 +113,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
   }
 }
