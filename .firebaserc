@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "vtokenfrontend",
+    "vtoken": "vtokenfrontend"
+  }
+}

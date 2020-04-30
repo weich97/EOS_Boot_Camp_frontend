@@ -11,7 +11,7 @@ async function takeAction(action, dataValue) {
     try {
         const resultWithConfig = await api.transact({
             actions: [{
-                account: "auction",
+                account: "test2",
                 name: action,
                 authorization: [{
                     actor: localStorage.getItem("cardgame_account"),
@@ -139,8 +139,8 @@ class ApiService{
             const rpc = new JsonRpc(process.env.REACT_APP_EOS_HTTP_ENDPOINT);
             const result = await rpc.get_table_rows({
                 "json": true,
-                "code": "auction",
-                "scope": "auction",
+                "code": "test2",
+                "scope": "test2",
                 "table": "people",
             });
             console.log(result.rows)

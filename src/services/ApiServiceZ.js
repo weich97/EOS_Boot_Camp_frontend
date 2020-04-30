@@ -160,6 +160,7 @@ class ApiServiceZ{
             return result.rows.sort();
         }
         catch(err){
+            return [];
             console.error(err);
         }
     }

@@ -2,7 +2,7 @@ import React, { Component,useState } from 'react';
 import {connect} from 'react-redux';
 import Widget from "components/Widget/index";
 import {Nav, NavItem, NavLink, TabContent, TabPane} from 'reactstrap';
-import ApiServiceZ from '../../../../../services/ApiServiceZ';
+import ApiServiceW from '../../../../../services/ApiServiceW';
 import ListItem from '@material-ui/core/ListItem';
 import Avatar from '@material-ui/core/Avatar';
 import ListItemText from '@material-ui/core/ListItemText';
@@ -32,7 +32,7 @@ class SellAccount extends Component{
     }
 
     fetchdata(){
-        return ApiServiceZ.getsellingaccount().then(data =>{
+        return ApiServiceW.getTicketRecord().then(data =>{
             console.log(data)
             this.setState({datafeed: data}); 
             //this.intervalID = setTimeout(this.fetchdata(this), 5000);     
@@ -71,7 +71,7 @@ class SellAccount extends Component{
             alert("Bid Price is lower than highest Bid. Please Stake at least 2 TNT more than the highest");
         }
         else{
-            return ApiServiceZ.createsellorder(form)
+            return ApiServiceW.createsellorder(form)
             .then((data) => {
                 alert("Bid Placed Successfully")
             //setUser({ name: form.username });
@@ -105,7 +105,7 @@ class SellAccount extends Component{
                                     <Avatar>
                                         <i className="zmdi zmdi-folder zmdi-hc-fw zmdi-hc-lg text-white"/>
                                     </Avatar>
-                                    <ListItemText primary={" Bid Price:"+data.price_ask} secondary={" Username: "+data.seller} />
+                                    <ListItemText primary={" Bid Price:"+data.bid_price} secondary={" Username: "+data.user_name} />
                                     <Button variant="contained" color="primary">Buy Ticket</Button>
                                 </ListItem>
                                 )}
@@ -169,38 +169,7 @@ class SellAccount extends Component{
                         </div>
 
                     <div className="jr-card-body">
-                        <form name = "form" onSubmit = {this.handleSubmit}>
-                            <TextField
-                            label="Bid Price"
-                            required
-                            margin="normal"
-                            name="bid_price"
-                            onChange = {this.handleChange}
-                            multiline
-                            fullWidth
-                            type ="input"
-                            className="mt-1 my-sm-3"
-                            />
-
-                            <TextField
-                            label="Bid Price"
-                            hidden
-                            margin="normal"
-                            name="bid_price"
-                            onChange = {this.handleChange}
-                            multiline
-                            fullWidth
-                            type ="input"
-                            className="mt-1 my-sm-3"
-                            />
-
-                            <div className="mb-3 d-flex align-items-center justify-content-between">
-                            <Button type="submit" variant="contained" color="primary">
-                               Sell Ticket
-                            </Button>
-                            
-                            </div>
-                        </form>
+                        
                     </div>
                 </div>
                 </div>
